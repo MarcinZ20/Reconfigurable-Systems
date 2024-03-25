@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 class Converter():
 
     def __init__(self, phrase) -> None:
@@ -13,7 +16,7 @@ class Converter():
         with open(file_name, "wb") as f:
             f.write(bit_stream.encode())
 
-    def write_start_stop_bits(self, file_name: str = "bit_stream_input.bin") -> None:
+    def write_start_stop_bits(self, file_name: str = "bit_start_stop.bin") -> None:
         with open(file_name, "ab") as f:
             f.write(b'1')
             f.write(b'0')

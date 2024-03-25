@@ -67,7 +67,7 @@ always @(*) begin
     endcase
 end
 
-// Przechowaj poprzednią wartość send
+// Przechowuje sobie poprzednią wartość send
 reg send_prev;
 always @(posedge clk or posedge rst) begin
     if (rst) begin
