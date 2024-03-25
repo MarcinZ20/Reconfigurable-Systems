@@ -2,19 +2,17 @@
 
 module testbench;
 
-// Parametry
-parameter DATA_WIDTH = 8; // Szerokość danych wejściowych
-parameter FILENAME_IN = "input_data.bin"; // Nazwa pliku wejściowego
-parameter FILENAME_OUT = "output_data.bin"; // Nazwa pliku wyjściowego
-parameter TIMEOUT = 1000; // Maksymalna liczba cykli zegara
+parameter DATA_WIDTH = 8; 
+parameter FILENAME_IN = "input_data.bin"; 
+parameter FILENAME_OUT = "output_data.bin"; 
+parameter TIMEOUT = 1000;
 
-// Sygnały
-reg clk = 0; // Zegar
-reg rst = 1; // Reset (aktywny wysoki)
-reg send = 0; // Flaga send
-reg [DATA_WIDTH-1:0] data_in; // Dane wejściowe
-reg [DATA_WIDTH-1:0] data_out; // Dane wyjściowe
-wire txd; // Wyjście txd
+reg clk = 0; 
+reg rst = 1; 
+reg send = 0; 
+reg [DATA_WIDTH-1:0] data_in; 
+reg [DATA_WIDTH-1:0] data_out; 
+wire txd; 
 
 // Instancja testowanego modułu
 state_machine uut (
@@ -32,27 +30,26 @@ end
 
 // Generowanie sygnału send
 initial begin
-    #10; // Opóźnienie początkowe
-    send = 1; // Wysłanie pierwszego zestawu danych
-    #10; // Opóźnienie między zestawami danych
-    send = 0; // Wyłączenie sygnału send
-    #10; // Opóźnienie końcowe
-    $finish; // Zakończenie symulacji
+    #10; 
+    send = 1;
+    #10; 
+    send = 0; 
+    #10; 
+    $finish;
 end
 
-// Generowanie zegara
+
 always #5 clk = ~clk;
 
-// Monitorowanie danych wyjściowych
 always @(posedge clk) begin
     if (send) begin
         data_out <= data_in;
     end
 end
 
-// Zapis danych wyjściowych do pliku
+
 initial begin
-    #10; // Opóźnienie na upewnienie się, że dane zostały zapisane
+    #10;
     $writememb(FILENAME_OUT, data_out);
 end
 

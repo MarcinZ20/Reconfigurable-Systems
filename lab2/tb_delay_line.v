@@ -10,7 +10,7 @@ reg ce,
 reg [N-1:0]idata,
 wire [N-1:0]odata
 
-delay_line DUT (
+delay_line #(LENGTH, DELAY) DUT (
     .clk(clk),
     .ce(ce),
     .idata(idata),

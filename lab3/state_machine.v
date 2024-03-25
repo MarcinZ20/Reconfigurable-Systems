@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module UART_Transmitter(
+module UART(
     input clk,      // zegar
     input rst,      // reset
     input send,     // flaga, ze dane wyslane
