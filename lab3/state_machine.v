@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
 module UART_Transmitter(
-    input clk,      // wejście zegarowe
-    input rst,      // wejście reset
+    input clk,      // zegar
+    input rst,      // reset
     input send,     // flaga, ze dane wyslane
     input [7:0] data, // 8-bitowy sygnał wejściowy
-    output reg txd   // Wyjście danych (1 bit)
+    output reg txd   // 1 bitowe wyjście
 );
 
 parameter STATE_IDLE = 2'b00;
